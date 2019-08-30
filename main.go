@@ -4,11 +4,15 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"os/exec"
+	"strings"
+
+	"github.com/kinche/franz-cli/client"
 )
 
 var (
 	cmd   string // user's benchmark command
-	token string
+	token string // franz api key
 )
 
 func main() {
@@ -34,6 +38,19 @@ func main() {
 			fKey = token
 		}
 	}
+
+	command := strings.Split(cmd, " ")
+	args := command[1:]
+
+	e := exec.Command(command[0], args...)
+	s, _ := e.Output()
+
+	fmt.Print(string(s))
+
+	client.SendReport(s)
+
+	// don't fail the CI pipeline
+	os.Exit(0)
 }
 
 func usage() {
