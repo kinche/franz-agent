@@ -10,10 +10,10 @@ import (
 )
 
 // BaseURL is the main franz api url
-const BaseURL = "http://localhost:4005"
-
-// Franz Jobs endpoint
-const jobsEndpoint = BaseURL + "/jobs"
+const (
+	apiURL       string = "http://localhost:4005"
+	jobsEndpoint string = apiURL + "/jobs"
+)
 
 // payload sent to franz api
 type payload struct {
