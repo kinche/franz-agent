@@ -50,7 +50,7 @@ func main() {
 
 	fmt.Print(string(s))
 
-	client.SendReport(s, cinfo)
+	client.SendReport(s, cinfo.Get())
 
 	// don't fail the CI pipeline
 	os.Exit(0)
