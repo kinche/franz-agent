@@ -7,11 +7,12 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"os"
 )
 
 // BaseURL is the main franz api url
 const (
-	apiURL       string = "http://localhost:4005"
+	apiURL       string = "http://franz-api-staging.kinche.co"
 	jobsEndpoint string = apiURL + "/jobs"
 )
 
@@ -32,7 +33,7 @@ type payload struct {
 func SendReport(input []byte) error {
 
 	p := payload{
-		Sha1:          "sha1",
+		Sha1:          os.Getenv("CIRCLE_SHA1"),
 		Branch:        "branch",
 		CommitMessage: "commit message",
 		Author:        "author",
