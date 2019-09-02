@@ -7,6 +7,7 @@ import (
 	"os/exec"
 	"strings"
 
+	"github.com/kinche/franz-agent/ci"
 	"github.com/kinche/franz-agent/client"
 )
 
@@ -39,6 +40,8 @@ func main() {
 		}
 	}
 
+	cinfo := ci.Detect()
+
 	command := strings.Split(cmd, " ")
 	args := command[1:]
 
@@ -47,7 +50,7 @@ func main() {
 
 	fmt.Print(string(s))
 
-	client.SendReport(s)
+	client.SendReport(s, cinfo)
 
 	// don't fail the CI pipeline
 	os.Exit(0)

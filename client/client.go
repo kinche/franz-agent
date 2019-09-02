@@ -7,7 +7,8 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
-	"os"
+
+	"github.com/kinche/franz-agent/ci"
 )
 
 // BaseURL is the main franz api url
@@ -23,18 +24,19 @@ type payload struct {
 	CommitMessage string `json:"commit_message"`
 	Author        string `json:"author"`
 	RawInput      string `json:"raw_input"`
+	CI            string `json:"ci"`
 
 	// TODO: add resources
 	// TODO: add runtime
-	// TODO: add ci
 }
 
 // SendReport method sends the authenticated payload to the franz api
-func SendReport(input []byte) error {
+func SendReport(input []byte, cinfo ci.Info) error {
 
 	p := payload{
-		Sha1:          os.Getenv("CIRCLE_SHA1"),
-		Branch:        "branch",
+		Sha1:          cinfo.Sha1,
+		Branch:        cinfo.Branch,
+		CI:            cinfo.CI,
 		CommitMessage: "commit message",
 		Author:        "author",
 		RawInput:      base64.StdEncoding.EncodeToString(input),
