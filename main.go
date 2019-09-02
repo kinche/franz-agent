@@ -7,7 +7,7 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/kinche/franz-cli/client"
+	"github.com/kinche/franz-agent/client"
 )
 
 var (
