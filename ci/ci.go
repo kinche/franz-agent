@@ -13,6 +13,7 @@ type CI interface {
 type Info struct {
 	Sha1   string
 	Branch string
+	Author string
 	CI     string
 }
 

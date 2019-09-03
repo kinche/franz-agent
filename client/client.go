@@ -67,7 +67,7 @@ func SendReport(input []byte, cinfo ci.Info) error {
 	defer resp.Body.Close()
 
 	if resp.StatusCode == 200 {
-		fmt.Println("benchmark report sucessfully sent to franz")
+		fmt.Println("[franz-agent] benchmark report sucessfully sent to franz")
 		b, _ := ioutil.ReadAll(resp.Body)
 		fmt.Print(string(b))
 	} else {
