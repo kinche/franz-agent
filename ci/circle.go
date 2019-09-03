@@ -4,6 +4,7 @@ import (
 	"os"
 
 	"github.com/kinche/franz-agent/pkg/git"
+	"github.com/kinche/franz-agent/pkg/system"
 )
 
 // Circle struct
@@ -21,8 +22,14 @@ func (c Circle) Get() Info {
 		Branch:        c.GetBranch(),
 		CommitMessage: c.GetCommitMessage(),
 		Author:        c.GetAuthor(),
+		SystemInfo:    c.GetSystemInfo(),
 		CI:            "circle",
 	}
+}
+
+// GetSystemInfo uses git to get the author of the latest commit
+func (c Circle) GetSystemInfo() string {
+	return system.Uname()
 }
 
 // GetAuthor uses git to get the author of the latest commit

@@ -15,6 +15,7 @@ type Info struct {
 	Branch        string
 	Author        string
 	CommitMessage string
+	SystemInfo    string
 	CI            string
 }
 

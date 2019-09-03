@@ -24,6 +24,7 @@ type payload struct {
 	CommitMessage string `json:"commit_message"`
 	Author        string `json:"author"`
 	RawInput      string `json:"raw_input"`
+	SystemInfo    string `json:"system_info"`
 	CI            string `json:"ci"`
 
 	// TODO: add resources
@@ -38,6 +39,7 @@ func SendReport(input []byte, cinfo ci.Info) error {
 		Branch:        cinfo.Branch,
 		CI:            cinfo.CI,
 		CommitMessage: cinfo.CommitMessage,
+		SystemInfo:    cinfo.SystemInfo,
 		Author:        cinfo.Author,
 		RawInput:      base64.StdEncoding.EncodeToString(input),
 	}
