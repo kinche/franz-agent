@@ -1,6 +1,9 @@
 package system
 
-import "os/exec"
+import (
+	"os/exec"
+	"strings"
+)
 
 // Helper functions for OS info
 
@@ -11,5 +14,6 @@ func Uname() string {
 	if err != nil {
 		return ""
 	}
-	return string(s)
+	// remove trailing new line
+	return strings.TrimSuffix(string(s), "\n")
 }
