@@ -17,16 +17,22 @@ func NewCircle() Circle {
 // Get returns necessary information from Circle
 func (c Circle) Get() Info {
 	return Info{
-		Sha1:   c.GetSha1(),
-		Branch: c.GetBranch(),
-		Author: c.GetAuthor(),
-		CI:     "circle",
+		Sha1:          c.GetSha1(),
+		Branch:        c.GetBranch(),
+		CommitMessage: c.GetCommitMessage(),
+		Author:        c.GetAuthor(),
+		CI:            "circle",
 	}
 }
 
-// GetAuthor gets the author of the latest commit
+// GetAuthor uses git to get the author of the latest commit
 func (c Circle) GetAuthor() string {
 	return git.GetAuthor()
+}
+
+// GetCommitMessage uses git to get the commit message of the latest rev
+func (c Circle) GetCommitMessage() string {
+	return git.GetCommitMessage()
 }
 
 // GetBranch tries to fetch the branch name from the env var first.

@@ -11,10 +11,11 @@ type CI interface {
 
 // Info holds CI information
 type Info struct {
-	Sha1   string
-	Branch string
-	Author string
-	CI     string
+	Sha1          string
+	Branch        string
+	Author        string
+	CommitMessage string
+	CI            string
 }
 
 // Detect detects which CI platform this agent is running

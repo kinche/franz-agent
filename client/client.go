@@ -37,8 +37,8 @@ func SendReport(input []byte, cinfo ci.Info) error {
 		Sha1:          cinfo.Sha1,
 		Branch:        cinfo.Branch,
 		CI:            cinfo.CI,
-		CommitMessage: "commit message",
-		Author:        "author",
+		CommitMessage: cinfo.CommitMessage,
+		Author:        cinfo.Author,
 		RawInput:      base64.StdEncoding.EncodeToString(input),
 	}
 
